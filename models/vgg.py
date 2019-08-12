@@ -42,9 +42,9 @@ class Vgg19(torch.nn.Module):
     def __init__(self, requires_grad=False):
         super(Vgg19, self).__init__()
         # vgg_pretrained_features = models.vgg19(pretrained=True).features
+        #self.vgg_pretrained_features = models.vgg19(pretrained=True).features
         #siju mod
-        self.vgg_pretrained_features = models.vgg19(pretrained=True).features
-        #self.vgg_pretrained_features = models.mobilenet_v2(pretrained=True).features
+        self.vgg_pretrained_features = models.mobilenet_v2(pretrained=True).features
         # self.slice1 = torch.nn.Sequential()
         # self.slice2 = torch.nn.Sequential()
         # self.slice3 = torch.nn.Sequential()
@@ -66,9 +66,9 @@ class Vgg19(torch.nn.Module):
 
     def forward(self, X, indices=None):
         if indices is None:
-            indices = [2, 7, 12, 21, 30]
+            #indices = [2, 7, 12, 21, 30]
             #siju mod
-            #indices = [19]
+            indices = [19]
         out = []
         #indices = sorted(indices)
         for i in range(indices[-1]):

@@ -70,11 +70,11 @@ class VGGLoss(nn.Module):
         else:
             self.vgg = vgg
         self.criterion = nn.L1Loss()
-        self.weights = weights or [1.0/2.6, 1.0/4.8, 1.0/3.7, 1.0/5.6, 10/1.5]
-        self.indices = indices or [2, 7, 12, 21, 30]
+        #self.weights = weights or [1.0/2.6, 1.0/4.8, 1.0/3.7, 1.0/5.6, 10/1.5]
+        #self.indices = indices or [2, 7, 12, 21, 30]
         #siju mod
-        #self.weights = weights or [10/1.5]
-        #self.indices = indices or [19]
+        self.weights = weights or [10/1.5]
+        self.indices = indices or [19]
         if normalize:
             self.normalize = MeanShift([0.485, 0.456, 0.406], [0.229, 0.224, 0.225], norm=True).cuda()
         else:

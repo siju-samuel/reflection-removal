@@ -224,9 +224,9 @@ class ERRNetModel(ERRNetBase):
 
         if opt.hyper:
             self.vgg = losses.Vgg19(requires_grad=False).to(self.device)
-            in_channels += 1472
+            #in_channels += 1472
             #siju mod
-            #in_channels += 1280
+            in_channels += 1280
 
         self.net_i = arch.__dict__[self.opt.inet](in_channels, 3).to(self.device)
         networks.init_weights(self.net_i, init_type=opt.init_type) # using default initialization as EDSR
