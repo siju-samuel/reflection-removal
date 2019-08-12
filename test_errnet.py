@@ -11,7 +11,7 @@ import util.util as util
 opt = TrainOptions().parse()
 
 opt.isTrain = False
-cudnn.benchmark = True
+cudnn.benchmark = False #siju 
 opt.no_log =True
 opt.display_id=0
 opt.verbose = False

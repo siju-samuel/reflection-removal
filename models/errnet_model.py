@@ -225,6 +225,8 @@ class ERRNetModel(ERRNetBase):
         if opt.hyper:
             self.vgg = losses.Vgg19(requires_grad=False).to(self.device)
             in_channels += 1472
+            #siju mod
+            #in_channels += 1280
 
         self.net_i = arch.__dict__[self.opt.inet](in_channels, 3).to(self.device)
         networks.init_weights(self.net_i, init_type=opt.init_type) # using default initialization as EDSR
@@ -327,14 +329,26 @@ class ERRNetModel(ERRNetBase):
 
         # without edge
         input_i = self.input
+        #print("self.input.shape =", self.input.shape)
+        xx = torch.split(input_i, split_size_or_sections=3, dim=1)
+        #print("self.input.shape =", type(xx), len(xx), xx[0].shape)
 
         if self.vgg is not None:
             hypercolumn = self.vgg(self.input)
             _, C, H, W = self.input.shape
-            hypercolumn = [F.interpolate(feature.detach(), size=(H, W), mode='bilinear', align_corners=False) for feature in hypercolumn]
-            input_i = [input_i]
-            input_i.extend(hypercolumn)
-            input_i = torch.cat(input_i, dim=1)
+            #hypercolumn = [F.interpolate(feature.detach(), size=(H, W), mode='bilinear', align_corners=False) for feature in hypercolumn]
+            #input_i = [input_i]
+            #input_i.extend(hypercolumn)
+            #input_i = torch.cat(input_i, dim=1)
+            #y = torch.zeros(1).cuda()
+            for i, feature in enumerate(hypercolumn):
+                #print(feature.shape)
+                
+                #x = F.interpolate(feature.detach(), size=(H, W), mode='bilinear', align_corners=False)
+                x = F.interpolate(feature, size=(H, W), mode='bilinear', align_corners=False)
+                #torch.cuda.empty_cache()
+                # print(x.shape)
+                input_i = torch.cat((input_i, x), dim=1)
 
         output_i = self.net_i(input_i)
 

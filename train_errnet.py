@@ -26,7 +26,7 @@ if opt.debug:
     opt.no_flip = True
 
 # modify the following code to 
-datadir = '/home/a00903403/workspace/d00248762/computer_vision/train_dataset/'
+datadir = '/home/centos/reflection_removal/train_dataset/'
 #'/media/kaixuan/DATA/Papers/Code/Data/Reflection/'
 
 datadir_syn = join(datadir, 'VOCdevkit/VOC2012/PNGImages')

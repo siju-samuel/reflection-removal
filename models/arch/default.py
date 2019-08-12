@@ -52,6 +52,7 @@ class DRNet(torch.nn.Module):
         conv = nn.Conv2d
         deconv = nn.ConvTranspose2d
         act = nn.ReLU(True)
+        print("in_channels=", in_channels, "n_feats=", n_feats, "kernel_size=", bottom_kernel_size)
         
         self.pyramid_module = None
         self.conv1 = ConvLayer(conv, in_channels, n_feats, kernel_size=bottom_kernel_size, stride=1, norm=None, act=act)
