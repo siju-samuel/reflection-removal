@@ -336,18 +336,8 @@ class ERRNetModel(ERRNetBase):
         if self.vgg is not None:
             hypercolumn = self.vgg(self.input)
             _, C, H, W = self.input.shape
-            #hypercolumn = [F.interpolate(feature.detach(), size=(H, W), mode='bilinear', align_corners=False) for feature in hypercolumn]
-            #input_i = [input_i]
-            #input_i.extend(hypercolumn)
-            #input_i = torch.cat(input_i, dim=1)
-            #y = torch.zeros(1).cuda()
             for i, feature in enumerate(hypercolumn):
-                #print(feature.shape)
-                
-                #x = F.interpolate(feature.detach(), size=(H, W), mode='bilinear', align_corners=False)
                 x = F.interpolate(feature, size=(H, W), mode='bilinear', align_corners=False)
-                #torch.cuda.empty_cache()
-                # print(x.shape)
                 input_i = torch.cat((input_i, x), dim=1)
 
         output_i = self.net_i(input_i)
