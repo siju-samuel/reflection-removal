@@ -73,3 +73,5 @@ If you find our code helpful in your research or work please cite our paper.
 * Our code architecture is inspired by [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) and [EDSR](https://github.com/thstkdgus35/EDSR-PyTorch). 
 
 * Special thanks to [@fqnchina](https://github.com/fqnchina) and [@ceciliavision](https://github.com/ceciliavision) for some discussions of this work. 
+
+* Thanks to the contributors of https://github.com/Vandermode/ERRNet, the base code is from this github
